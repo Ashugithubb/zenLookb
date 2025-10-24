@@ -5,17 +5,25 @@ import { Service } from './services/entities/service.entity';
 import { Booking } from './booking/entities/booking.entity';
 import { UnavailableSlot } from './unavailable-slots/entities/unavailable-slot.entity';
 
-
 dotenv.config();
+
+const isProduction = process.env.NODE_ENV === 'production';
+
 const AppDataSource = new DataSource({
-    type: 'postgres',
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || '5432', 10),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-   entities:[User,Service,Booking,UnavailableSlot],
-    migrations: [__dirname + '/migrations/*.{ts,js}'],
-    synchronize: false,
+  type: 'postgres',
+  url: process.env.DATABASE_URL || undefined, 
+  host: process.env.DB_HOST || undefined,     
+  port: parseInt(process.env.DB_PORT || '5432', 10),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  entities: [User, Service, Booking, UnavailableSlot],
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+  synchronize: true, 
+  ssl: isProduction
+    ? { rejectUnauthorized: false }
+    : false,
+  logging: !isProduction,
 });
+
 export default AppDataSource;

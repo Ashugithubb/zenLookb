@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
+import { JwtAuthGuard } from '../auth/guard/jwt.auth';
 import { Response } from 'express';
 @Controller('user')
 export class UserController {

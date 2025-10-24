@@ -10,13 +10,13 @@ export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
   inject: [ConfigService],
   useFactory: (configService: ConfigService) => ({
     type: 'postgres',
-    url: configService.get<string>('DATABASE_URL'), // use Neon pooled URL
+    url: configService.get<string>('DATABASE_URL'), 
     entities: [User, Service, Booking, UnavailableSlot],
-    synchronize: false,
+    synchronize: true,
     autoLoadEntities: true,
     extra: {
       ssl: {
-        rejectUnauthorized: false, // required for Neon
+        rejectUnauthorized: false, 
       },
     },
   }),

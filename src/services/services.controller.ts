@@ -3,7 +3,7 @@ import { ServicesService } from './services.service';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { GetServiceQueryDto } from './dto/query.dto';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
+import { JwtAuthGuard } from '../auth/guard/jwt.auth';
 import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
 import { BookingService } from 'src/booking/booking.service';
 import { FileInterceptor } from '@nestjs/platform-express';
